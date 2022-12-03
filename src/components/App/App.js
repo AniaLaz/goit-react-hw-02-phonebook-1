@@ -19,13 +19,11 @@ export class App extends Component {
     }));
     const nameArr = this.getContact();
     nameArr.map(contact => {
-      const ollName = contact.name;
       if (contact.name === name) {
-         this.addalert(name);
+        this.addalert(name);
       }
     });
   };
-  
 
   addalert = name => {
     alert(`${name} is already in contacts`);
