@@ -24,9 +24,9 @@ export class App extends Component {
       const ollName = contact.name;
       if (ollName === name) {
         this.addalert(name);
-        this.setState(prevState => ({
-          contacts: [...prevState.contacts],
-        }));
+        // this.setState(prevState => ({
+        //   contacts: [...prevState.contacts],
+        // }));
       }       
     });
   };
