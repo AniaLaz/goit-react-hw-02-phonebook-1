@@ -14,23 +14,21 @@ export class App extends Component {
   };
 
   addContacts = (name, number) => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, { id: nanoid(), name, number }],
-    }));
-    const nameArr = this.getContact();
-    nameArr.map(contact => {
-      if (contact.name === name) {
-        this.addalert(name);
-      }
-    });
+    const { contacts } = this.state;
+    const comparisoName = contacts
+      .map(contact => contact.name.toLowerCase())
+      .some(contact => contact === name.toLowerCase());
+    if (!comparisoName) {
+      this.setState(prevState => ({
+        contacts: [{ id: nanoid(), name, number }, ...prevState.contacts],
+      }));
+    } else {
+      this.addalert();
+    }
   };
 
   addalert = name => {
-    alert(`${name} is already in contacts`);
-
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts],
-    }));
+    window.alert(`${name} is already in contacts`);
   };
 
   deleteContact = contactId => {
