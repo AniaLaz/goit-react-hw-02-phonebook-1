@@ -7,9 +7,7 @@ import css from 'components/App/App.module.css';
 
 export class App extends Component {
   state = {
-    contacts: [
-    
-    ],
+    contacts: [],
     name: '',
     number: '',
     filter: '',
@@ -19,20 +17,22 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { id: nanoid(), name, number }],
     }));
-    const Arr = this.getContact();
-    Arr.map(contact => {
+    const nameArr = this.getContact();
+    nameArr.map(contact => {
       const ollName = contact.name;
-      if (ollName === name) {
-        this.addalert(name);
-        // this.setState(prevState => ({
-        //   contacts: [...prevState.contacts],
-        // }));
-      }       
+      if (contact.name === name) {
+         this.addalert(name);
+      }
     });
   };
+  
 
   addalert = name => {
     alert(`${name} is already in contacts`);
+
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts],
+    }));
   };
 
   deleteContact = contactId => {
